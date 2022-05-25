@@ -36,7 +36,7 @@
             @endif
             <div class="panel panel-info">
                 <div class="panel-header with-border">
-                    <h3 class="panel-title">シークレットキー</h3>
+                    <h3 class="panel-title">シークレット</h3>
                 </div>
                 <div class="panel-body text-center">
                     <div>
