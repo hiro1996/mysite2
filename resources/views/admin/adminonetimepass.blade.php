@@ -43,7 +43,6 @@
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="fa fa-key"></i></span>
                             <input id="copy" type="text" class="form-control" value="{{ $data['google2fa_secret'] }}" readonly>
-                            <span id="clipboard" class="input-group-addon" data-clipboard-target="#copy" data-toggle="tooltip" title="クリップボードにコピー"><i class="fa fa-clipboard"></i></span>
                         </div>
                     </div>
                 </div>
