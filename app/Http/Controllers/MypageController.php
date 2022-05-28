@@ -31,8 +31,6 @@ class MypageController extends Controller
      * ニックネーム変更完了、usersテーブルへ入力したニックネームを更新
      */
     public function nicknamechangecomplete(Request $request, User $user) {
-
-
         $newnickname = $request->newnickname;
 
         $request->validate([
@@ -218,7 +216,7 @@ class MypageController extends Controller
     }
 
     public function mypagesetting(Request $request, Rankingtablesetting $rankingtablesetting) {
-        $mypagesetting = $request->all();
+        $mypagesetting = $request->only('tab','tabid','table');
 
         $rankingtablesetting->rankingtablesettingModelUpdate('rankingtablesettingdefaultflag',NULL,$mypagesetting["table"]);
         for ($i = 0;$i < count($mypagesetting["tab"]);$i++) {

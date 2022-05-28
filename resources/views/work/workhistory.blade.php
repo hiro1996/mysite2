@@ -9,20 +9,20 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">写真</th>
+                    <th scope="col">タイトル</th>
+                    <th scope="col">閲覧日</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-            </tbody>
+            @for ($i = 0;$i < count($browsehistorydatas['img']);$i++)
+                <tbody>
+                    <tr>
+                        <td><img src="{{ $browsehistorydatas['img'][$i] }}" width="100" height="100"></td>
+                        <td>{{ $browsehistorydatas['title'][$i] }}</td>
+                        <td>{{ $browsehistorydatas['historydate'][$i] }}</td>
+                    </tr>
+                </tbody>
+            @endfor
         </table>
 
     @include('block.endtitle')

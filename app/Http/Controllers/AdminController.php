@@ -86,7 +86,7 @@ class AdminController extends Controller
      * 更新された後、「設定変更しました。」のメッセージを表示し、更新内容を表示
      */
     public function adminaccountsetting(Request $request, User $user) {
-        $adminaccountdata = $request->all();
+        $adminaccountdata = $request->only('loginid','nickname','email');
         $user->userModelUpdate('loginid',$adminaccountdata["loginid"],'nickname',$adminaccountdata["nickname"]);
         $user->userModelUpdate('loginid',$adminaccountdata["loginid"],'email',$adminaccountdata["email"]);
         $users = $user->userModelGet($adminaccountdata["loginid"]);
@@ -104,7 +104,7 @@ class AdminController extends Controller
     }
 
     public function usersearchajax(Request $request, User $user) {
-        $userword = $request->all();
+        $userword = $request->only('logintimes','times');
         $users = $user->userModelWhere($userword['logintimes'],$userword['times']);
         return response()->json(
             [
@@ -138,7 +138,7 @@ class AdminController extends Controller
         fclose($f);
 
         header("Content-Type: application/octet-stream");
-        header('Content-Length: '.filesize('.csv'));
+        //header('Content-Length: '.filesize('.csv'));
         header('Content-Disposition: attachment; filename=test.csv');
         readfile('test.csv');
 
@@ -148,7 +148,7 @@ class AdminController extends Controller
     public function adminonetimepass(Request $request, User $user) {
         /**
          * 管理者用のログインID取得
-         * URLからaccountidクエリ取得
+         * URLからaccountidクエリ(2)取得
          */
         $accountid = request('accountid');
         $loginid = $user->userModelSearch('user_value_id',2,'loginid');

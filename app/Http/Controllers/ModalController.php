@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ModalController extends Controller
 {
     public function contentstopmodalcomplete(Request $request, Attribute $attribute, Attributeanswer $attributeanswer, Attributetextanswer $attributetextanswer) {
-        $modals = $request->all();
+        $modals = $request->only('modals','id','type');
 
         for ($i = 0;$i < count($modals["modals"]);$i++) {
             $ans_id = $attribute->attributeModelExist('attr_id',$modals["modals"][$i],'answer_id');

@@ -11,6 +11,8 @@ use App\Models\Work;
 use App\Models\Attribute;
 use App\Models\Printorderjsid;
 use App\Models\Rankingtitlesetting;
+use App\Models\Record;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -46,7 +48,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request, User $user, Rankingtablesetting $rankingtablesetting) {
+    public function login(Request $request, User $user, Work $work, Record $record, Rankingtablesetting $rankingtablesetting) {
         //dd(Auth::user());
         /**
          * 新規作成画面から遷移
@@ -85,6 +87,20 @@ class LoginController extends Controller
              */
             $user->userModelInsert($loginid,$nickname,$password,$email,1);
             $rankingtablesetting->rankingtablesettingModelInsert($loginid);
+
+            /**
+             * 作品IDとユーザーIDをrecordsテーブルに初期化して登録
+             */
+            $tablelist = ['workanimes','workfilms'];
+            for ($i = 0;$i < count($tablelist);$i++) {
+                $workdatas = $work->workModelGet($tablelist[$i],NULL,NULL);
+                foreach ($workdatas as $id) {
+                    $record->recordModelInsert($loginid,$id->workid,0);
+                }
+            }
+
+
+
         /**
          * 管理者用パスワード設定画面から遷移
          */
