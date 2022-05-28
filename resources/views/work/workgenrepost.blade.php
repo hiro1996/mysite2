@@ -7,7 +7,7 @@
     @include('block.title')
 
         <form action="/mypage" method="POST">
-            <h4>あなたの思うこの作品のカテゴリーを選んで下さい</h4>
+            <h4>あなたの思うこの作品のカテゴリーを選んで下さい。</h4>
             <div class="row">
                 @for ($i = 1;$i <= count($category[1]);$i++)
                     <div class="col">
@@ -23,7 +23,7 @@
                 @endfor
             </div>
 
-            <h4>あなたの思うこの作品のイメージを選んで下さい</h4>
+            <h4>あなたの思うこの作品のイメージを選んで下さい。</h4>
             <div class="row">
                 @for ($i = 1;$i <= count($category[2]);$i++)
                     <div class="col">
